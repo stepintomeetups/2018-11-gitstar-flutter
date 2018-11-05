@@ -19,30 +19,6 @@ class _SearchReposState extends State<SearchRepos> {
   final _searchController = TextEditingController();
   var query = '';
 
-  Widget _getListItem(Repository repo) {
-    final gap = MediaQuery.of(context).size.width * .05;
-
-    return Card(
-      margin: EdgeInsets.symmetric(horizontal: gap, vertical: gap / 2),
-      child: ListTile(title: Text(repo.fullName)),
-    );
-  }
-
-  ListView _getList(List<Repository> repos) {
-    return ListView.builder(
-      itemCount: repos.length,
-      itemBuilder: (context, index) {
-        final todo = repos[index];
-
-        return GestureDetector(
-          child: _getListItem(todo),
-          onTap: () async {
-          },
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final gap = MediaQuery.of(context).size.width * .05;
@@ -79,7 +55,7 @@ class _SearchReposState extends State<SearchRepos> {
               Navigator.push(
                 context, 
                 MaterialPageRoute(
-                  builder: (ctx) => RepoDetails(repo)
+                  builder: (ctx) => RepoDetails(repo, widget.api)
                 )
               );
             }): null

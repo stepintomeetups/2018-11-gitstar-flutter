@@ -4,6 +4,7 @@ import 'package:gitstar/widget/search_repos.dart';
 import 'package:gitstar/api.dart';
 
 class GitStarTabController extends StatelessWidget {
+
   final API api;
 
   GitStarTabController(this.api);

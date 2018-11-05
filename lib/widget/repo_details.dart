@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gitstar/entity.dart';
+import 'package:gitstar/api.dart';
 
 class RepoDetails extends StatefulWidget {
 
   final Repository repo;
+  final API api;
 
-  RepoDetails(this.repo);
+  RepoDetails(this.repo, this.api);
 
   @override
   _RepoDetailsState createState() => _RepoDetailsState();
@@ -13,6 +15,45 @@ class RepoDetails extends StatefulWidget {
 }
 
 class _RepoDetailsState extends State<RepoDetails> {
+
+  bool _starred;
+
+  FutureBuilder _getStarButton() {
+    return FutureBuilder(
+      future: widget.api.isRepoStaredByMe(widget.repo.fullName),
+      builder: (ctx, snapshot) {
+        switch(snapshot.connectionState)  {
+          case ConnectionState.waiting:
+            return Center(child: CircularProgressIndicator());
+          case ConnectionState.done:
+            _starred = snapshot.data;
+            if (_starred) {
+              return Center(
+                child: RaisedButton(
+                  child: Icon(Icons.star),
+                  onPressed: () async {
+                    await widget.api.unstarRepository(widget.repo.fullName);
+                    setState(() { });
+                  },
+                )
+              );
+            } else {
+              return Center(
+                child: RaisedButton(
+                  child: Icon(Icons.star_border),
+                  onPressed: () async {
+                    await widget.api.starRepository(widget.repo.fullName);
+                    setState(() { });
+                  },
+                )
+              );
+            }
+            return null;
+          default:
+        }
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +108,10 @@ class _RepoDetailsState extends State<RepoDetails> {
                     ]
                   ),
                 ),
-                Center(
-                  child: RaisedButton(
-                    child: Icon(Icons.star_border),
-                    onPressed: () {},
-                  )
-                )
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: _getStarButton(),
+                ),
               ],
             ),
           ),

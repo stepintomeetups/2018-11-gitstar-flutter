@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gitstar/api.dart';
 import 'package:gitstar/widget/tab_controller.dart';
 import 'package:gitstar/widget/login.dart';
-import 'package:gitstar/widget/repo_details.dart';
-import 'package:gitstar/entity.dart';
 
 final api = API();
 
@@ -16,7 +14,6 @@ class GitStar extends StatelessWidget {
     '/': (ctx) => Login(api)
   };
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
