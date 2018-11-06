@@ -3,6 +3,7 @@ import 'package:gitstar/entity.dart';
 import 'package:gitstar/api.dart';
 import 'package:gitstar/widget/repo_list.dart';
 import 'package:gitstar/widget/repo_details.dart';
+import 'package:gitstar/ux.dart';
 
 class SearchRepos extends StatefulWidget {
 
@@ -27,12 +28,14 @@ class _SearchReposState extends State<SearchRepos> {
       children: <Widget>[
         IntrinsicHeight(
           child: Card(
+            color: GitStarColors.MAIN2,
             margin: EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
             child: Padding(
               padding: EdgeInsets.all(10.0),
               child: Column(
                 children: <Widget>[
                   TextField(
+                    cursorColor: GitStarColors.MAIN1,
                     controller: _searchController,
                   ),
                   RaisedButton(

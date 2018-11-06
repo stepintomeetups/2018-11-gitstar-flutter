@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gitstar/api.dart';
+import 'package:gitstar/ux.dart';
 
 class Login extends StatelessWidget {
 
@@ -15,7 +16,7 @@ class Login extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Card(
-          color: Colors.blue,
+          color: GitStarColors.MAIN1,
           child: Padding(
             padding: EdgeInsets.only(left: 40.0, right: 40.0, bottom: 10.0, top: 10.0),
             child: IntrinsicHeight(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gitstar/api.dart';
 import 'package:gitstar/widget/tab_controller.dart';
 import 'package:gitstar/widget/login.dart';
+import 'package:gitstar/ux.dart';
 
 final api = API();
 
@@ -20,7 +21,7 @@ class GitStar extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: GitStarColors.MAIN1
       ),
       routes: routes,
     );

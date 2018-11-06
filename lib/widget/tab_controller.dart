@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gitstar/widget/my_repos.dart';
 import 'package:gitstar/widget/search_repos.dart';
 import 'package:gitstar/api.dart';
+import 'package:gitstar/ux.dart';
 
 class GitStarTabController extends StatelessWidget {
 
@@ -12,10 +13,12 @@ class GitStarTabController extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+      
       length: 2,
       child: Scaffold(
         appBar: AppBar(
           bottom: TabBar(
+            indicatorColor: GitStarColors.MAIN2,
             tabs: [
               Tab(icon: Icon(Icons.person)),
               Tab(icon: Icon(Icons.search))

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:gitstar/entity.dart';
+import 'package:gitstar/ux.dart';
 
 class RepoList extends StatefulWidget {
 
@@ -21,6 +22,7 @@ class _RepoListState extends State<RepoList> {
     final gap = MediaQuery.of(context).size.width * .05;
 
     return Card(
+      color: GitStarColors.MAIN2,
       margin: EdgeInsets.symmetric(horizontal: gap, vertical: gap / 2),
       child: ListTile(title: Text(repo.fullName)),
     );
@@ -51,7 +53,7 @@ class _RepoListState extends State<RepoList> {
       builder: (context, snapshot) {
         switch(snapshot.connectionState)  {
           case ConnectionState.waiting:
-            return Center(child: CircularProgressIndicator());
+            return Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(GitStarColors.MAIN1)));
           case ConnectionState.done:
             _repos = snapshot.data;
             return Padding(

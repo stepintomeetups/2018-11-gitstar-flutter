@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gitstar/entity.dart';
 import 'package:gitstar/api.dart';
+import 'package:gitstar/ux.dart';
 
 class RepoDetails extends StatefulWidget {
 
@@ -24,7 +25,7 @@ class _RepoDetailsState extends State<RepoDetails> {
       builder: (ctx, snapshot) {
         switch(snapshot.connectionState)  {
           case ConnectionState.waiting:
-            return Center(child: CircularProgressIndicator());
+            return Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(GitStarColors.MAIN1)));
           case ConnectionState.done:
             _starred = snapshot.data;
             if (_starred) {
@@ -65,6 +66,7 @@ class _RepoDetailsState extends State<RepoDetails> {
         padding: EdgeInsets.all(10.0),
         child: IntrinsicHeight(
           child: Card(
+            color: GitStarColors.MAIN2,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
